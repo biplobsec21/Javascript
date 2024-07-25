@@ -1,0 +1,72 @@
+==================
+--largest and second largest --
+
+function answer(data) {
+    
+    let bn=0;
+    let sbn=0;
+    let cmp=0;
+    let max=data[0];
+ 
+        
+    bn=biggest(data,max);
+    data[bn.index]=0;
+    sbn=biggest(data,max);
+    
+    return `biggest: ${bn.max} and second biggest: ${sbn.max}`;
+    
+}
+function biggest(data,val){
+    
+    let result={
+        max: 0,
+        index: 0
+    };
+    for(let cnt=1;cnt<data.length;cnt++){
+            if(data[cnt] > val){
+                val = data[cnt];
+                index=cnt;
+            }
+    }
+    result.max=val;
+    result.index=index;
+    return result;
+}
+
+answer([4,2,3,5,25,7,9,12]);
+============================
+--Camel case conversion --
+
+function answer(data) {
+    let result="";
+    let word="";
+    let VfirstLetter=true;
+    let NextFirstLetter=true;
+    for(let elm of data){
+        
+        if(elm === " "){
+             result=result + word;
+             word="";
+             NextFirstLetter=true;
+        }else{
+            if(VfirstLetter){
+                elm = elm.toLowerCase();
+                VfirstLetter = false;
+            }
+
+            if(!VfirstLetter && NextFirstLetter){
+                 elm = elm.toUpperCase();
+                 NextFirstLetter = false;
+            }else{
+                elm = elm.toLowerCase();
+            }
+            word +=elm;
+        }
+    }
+    
+     result=result + word;
+    return result;
+    
+}
+
+answer("WWhat LangUage is GreaT language");
